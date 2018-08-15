@@ -1,9 +1,9 @@
 //The open and closed set could be tree strucures instead to speed up search
 
 class Astar{
-  ArrayList<Spot> openSet = new ArrayList<Spot>();
-  ArrayList<Spot> closedSet = new ArrayList<Spot>();
-  ArrayList<Spot> path = new ArrayList<Spot>();
+  ArrayList<Spot> openSet;
+  ArrayList<Spot> closedSet;
+  ArrayList<Spot> path;
   Spot start;
   Spot end;
   Spot current;
@@ -15,11 +15,17 @@ class Astar{
   
   Spot[][] grid = new Spot[ROWS][COLS];
   
+  public Astar(){
+    openSet = new ArrayList<Spot>();
+    closedSet = new ArrayList<Spot>();
+    path = new ArrayList<Spot>();
+  }
  
   public void createGrid() {
+    System.out.println("Create grid");
     for(int i = 0; i < COLS; i++) {
       for(int j = 0; j < ROWS; j++) {
-        System.out.println(i + " " + j);
+        System.out.println("Create grid " + i + " " + j);
         grid[i][j] = new Spot(i, j);
       }
     }
@@ -28,7 +34,7 @@ class Astar{
   public void addNeighbors(){
      for(int i = 0; i < COLS; i++) {
       for(int j = 0; j < ROWS; j++) {
-        System.out.println(i + " " + j);
+        System.out.println("Add neighbors " + i + " " + j);
         grid[i][j].addNeighbors(grid);
       }
     }
@@ -37,7 +43,7 @@ class Astar{
   public void drawGrid(){
    for(int i = 0; i < COLS; i++){
      for(int j = 0; j < ROWS; j++){
-       grid[i][j].show(color(255));
+       grid[i][j].show(color(70));
      }
    }
   }
@@ -70,27 +76,27 @@ class Astar{
   
 
  void setupSearch(){
-   size(600, 600);
-   System.out.println("Create grid");
    createGrid();
    addNeighbors();
-   drawGrid();
+   
    //start = grid[0][0];
    //end = grid[COLS-1][ROWS-1];
-   //start.wall = false;
-   //end.wall = false;
    
    //openSet.add(start);
  }
  
  void search(Snake snake, Food food){
-   //start = grid[snake.x][snake.y];
-   //end = grid[(int)food.location.x][(int)food.location.y];
-   start = new Spot(snake.x, snake.y);
-   end = new Spot((int)food.location.x,(int)food.location.y);
+   openSet.clear();
+   closedSet.clear();
+   path.clear();
+   start = grid[0][0];
+   end = grid[food.col][food.row];
+   System.out.println("StartNode " + start);
+   System.out.println("EndNode " + end);
    openSet.add(start);
    
-   if(openSet.size() > 0){
+   while(openSet.size() > 0){
+     //System.out.println("openSet: " + openSet);
      int lowestIndex = 0;
      for(int i = 0; i < openSet.size(); i++){
        if(openSet.get(i).f < openSet.get(lowestIndex).f){
@@ -108,8 +114,9 @@ class Astar{
          path.add(temp.previous);
          temp = temp.previous;
        }
-       noLoop();
+       //noLoop();
        System.out.println("DONE");
+       break;
      }
      //Best option moves from openSet to closedSet
      openSet.remove(current);
@@ -140,20 +147,20 @@ class Astar{
          }
        }
      }
-   }else{
-     //no solution
-     System.out.println("No solution");
-     noLoop();
-     return;
-   }
+   }//else{
+   //  //no solution
+   //  System.out.println("No solution");
+   //  noLoop();
+   //  return;
+   //}
       
    background(255);
    
-   drawGrid();
+   //drawGrid();
    
-   drawClosedSet();
+   //drawClosedSet();
    
-   drawOpenSet();
+   //drawOpenSet();
    
    
 
@@ -166,15 +173,6 @@ class Astar{
 
    drawPath(); 
    
-      
-   
-   //noFill();
-   //stroke(255);
-   //beginShape();
-   //for(int i = 0; i < path.size(); i++){
-   //  vertex((path.get(i).x*wdth), (path.get(i).y*hght));
-   //}
-   //endShape();
  
  }
  

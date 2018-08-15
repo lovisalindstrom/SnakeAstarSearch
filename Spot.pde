@@ -5,8 +5,8 @@ class Spot {
   float h;
   float x; 
   float y;
-  int wdth = width / COLS;
-  int hght = height / ROWS;
+  float wdth = width / COLS;
+  float hght = height / ROWS;
   Spot previous;
   //boolean wall;
   
@@ -64,12 +64,16 @@ class Spot {
     //if(this.wall){
     //  fill(0);
     //}
-    stroke(0);
+    stroke(200);
     rect((this.x * wdth), (this.y * hght), wdth, hght);
     //System.out.println("x: " + (this.x * wdth) + " y: " + (this.y * hght) + " w: " + (wdth) + " h: " + (hght));
   }
   
   void show(color col){
     draw(col);
+  }
+  
+  public String toString(){
+   return x + " " + y;
   }
 }

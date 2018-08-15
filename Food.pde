@@ -1,9 +1,12 @@
 class Food{
-
+  int col;
+  int row;
   PVector location;
   
-  public Food(PVector location){
+  public Food(PVector location, int col, int row){
     this.location = location;
+    this.col = col;
+    this.row = row;
   }
   
   void show(){

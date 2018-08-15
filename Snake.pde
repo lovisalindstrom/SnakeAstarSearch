@@ -5,7 +5,8 @@ class Snake {
   int xspeed;
   int yspeed;
   int total;
-
+  int col;
+  int row;
 
   Snake[] tail  = new Snake[100];
   
@@ -15,7 +16,8 @@ class Snake {
     this.xspeed = xspeed;
     this.yspeed = yspeed;
     this.total = 0;
-
+    this.col = x / 20;
+    this.row = y / 20;
   }
   
   void update(){
@@ -27,9 +29,11 @@ class Snake {
       tail[total-1] = new Snake(x, y, xspeed, yspeed);
     }
     
-    x = x + xspeed * (int)scl;
-    y = y + yspeed * (int)scl;
-
+    x = x + xspeed * scl;
+    y = y + yspeed * scl;
+    //col = x / scl;
+    //row = y / scl;
+    //System.out.println("Snake col: " + col + " row: " + row);
       
     //x = constrain(x, 0, width-scl); 
     //y = constrain(y, 0, height-scl);
@@ -81,7 +85,7 @@ class Snake {
  //}
  
   void show(){
-    fill(0);
+    fill(255);
     for(int i = 0; i < tail.length; i++){
       if(tail[i] != null){
         rect(tail[i].x, tail[i].y, scl, scl);

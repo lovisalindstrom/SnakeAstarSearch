@@ -4,7 +4,7 @@
 Astar graph;
 Snake snake;
 Food food;
-float scl = 20; //scale
+int scl = 20; //scale
 int COLS = 30;
 int ROWS = 30;
 
@@ -18,26 +18,41 @@ void setup(){
   frameRate(10);
   graph = new Astar();
   graph.setupSearch();
-  snake = new Snake(0,0,1,0);
+  
+  snake = new Snake(0, 0, 1, 0);
+  System.out.println("Snake col: " + snake.col +  " " + snake.row);
   food = pickFoodLocation();
+  
+  //final int snakeCol = snake.col;
+  //final int snakeRow = snake.row;
+  //graph.drawGrid();
   graph.search(snake, food);
   //snake.takePath(graph.path);
 }
 
 public Food pickFoodLocation(){
-  int cols = floor(width/scl);
-  int rows = floor(height/scl);
-  PVector foodVector = new PVector(floor(random(cols)), floor(random(rows)));
-  food = new Food(foodVector);
+  int col = floor(random(COLS));
+  int row = floor(random(ROWS));
+  System.out.println("Food col: " + col + ", row: " + row);
+  PVector foodVector = new PVector(col, row);
   foodVector.mult(scl);
+  food = new Food(foodVector, col, row);
+  System.out.println("Food location: x" + food.location.x + " y" + food.location.y);
   return food;
 }
 
 void draw(){
-  //background(70);
+  background(71);
+  
+  graph.drawGrid();
+  graph.drawOpenSet();
+  graph.drawClosedSet();
+  graph.drawPath();
   
   if(snake.eat(food)){
     food = pickFoodLocation();
+    //final int snakeCol = snake.col;
+    //final int snakeRow = snake.row;
     graph.search(snake, food);
     
   }
