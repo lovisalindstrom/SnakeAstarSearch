@@ -59,12 +59,8 @@ class Spot {
   }
   
   void draw(color col){
-    //System.out.println("Show spot");
     fill(col);
-    //if(this.wall){
-    //  fill(0);
-    //}
-    stroke(200);
+    stroke(0);
     rect((this.x * wdth), (this.y * hght), wdth, hght);
     //System.out.println("x: " + (this.x * wdth) + " y: " + (this.y * hght) + " w: " + (wdth) + " h: " + (hght));
   }

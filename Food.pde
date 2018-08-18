@@ -10,7 +10,7 @@ class Food{
   }
   
   void show(){
-    fill(255, 0, 100);
+    fill(0, 100, 230);
     rect(location.x,location.y,scl,scl);
   }
 }

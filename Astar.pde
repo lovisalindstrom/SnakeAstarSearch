@@ -1,4 +1,3 @@
-//The open and closed set could be tree strucures instead to speed up search
 
 class Astar{
   ArrayList<Spot> openSet;
@@ -7,7 +6,7 @@ class Astar{
   Spot start;
   Spot end;
   Spot current;
-  //boolean noSolution = false;
+  boolean noSolution = false;
   boolean newPath = false;
   int wdth = width / COLS;
   int hght = height / ROWS;
@@ -16,9 +15,12 @@ class Astar{
   Spot[][] grid = new Spot[ROWS][COLS];
   
   public Astar(){
+    this.start = null;
+    this.end = null;
     openSet = new ArrayList<Spot>();
     closedSet = new ArrayList<Spot>();
     path = new ArrayList<Spot>();
+    
   }
  
   public void createGrid() {
@@ -85,17 +87,31 @@ class Astar{
    //openSet.add(start);
  }
  
- void search(Snake snake, Food food){
+ void clearLists(){
    openSet.clear();
    closedSet.clear();
    path.clear();
-   start = grid[0][0];
-   end = grid[food.col][food.row];
+ }
+ 
+ //void setPath(Spot temp){
+ //  path.add(temp);
+ //  System.out.println("Add to path " + temp);
+ //  while(temp.previous != null){
+ //    System.out.println("Add to path " + temp.previous);
+ //    path.add(temp.previous);
+ //    temp = temp.previous;
+ //  }
+ //}
+ 
+ void search(int startCol, int startRow, int endCol, int endRow){
+   clearLists();
+   start = grid[startCol][startRow];
+   end = grid[endCol][endRow];
    System.out.println("StartNode " + start);
    System.out.println("EndNode " + end);
    openSet.add(start);
    
-   while(openSet.size() > 0){
+   while(!openSet.isEmpty()){
      //System.out.println("openSet: " + openSet);
      int lowestIndex = 0;
      for(int i = 0; i < openSet.size(); i++){
@@ -108,13 +124,20 @@ class Astar{
      //Check if we're finished
      if(openSet.get(lowestIndex) == end){
        //find the path
-       Spot temp = current;
-       path.add(temp);
-       while(temp.previous != null){
-         path.add(temp.previous);
-         temp = temp.previous;
+       for(int i = 0; i < closedSet.size(); i++){
+         path.add(closedSet.get(i));
+         System.out.println("Add to path " + closedSet.get(i));
        }
-       //noLoop();
+       
+       //Spot temp = current;
+       //path.add(temp);
+       //System.out.println("Add to path " + temp);
+       //while(temp.previous != null){
+       //  System.out.println("Add to path " + temp.previous);
+       //  path.add(temp.previous);
+       //  temp = temp.previous;
+       //}
+       
        System.out.println("DONE");
        break;
      }
@@ -154,13 +177,6 @@ class Astar{
    //  return;
    //}
       
-   background(255);
-   
-   //drawGrid();
-   
-   //drawClosedSet();
-   
-   //drawOpenSet();
    
    
 
@@ -171,7 +187,7 @@ class Astar{
    //  temp = temp.previous;
    //}
 
-   drawPath(); 
+   //drawPath(); 
    
  
  }

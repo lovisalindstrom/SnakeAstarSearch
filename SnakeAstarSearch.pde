@@ -3,6 +3,7 @@
 
 Astar graph;
 Snake snake;
+Food previousFood;
 Food food;
 int scl = 20; //scale
 int COLS = 30;
@@ -25,9 +26,8 @@ void setup(){
   
   //final int snakeCol = snake.col;
   //final int snakeRow = snake.row;
-  //graph.drawGrid();
-  graph.search(snake, food);
-  //snake.takePath(graph.path);
+  graph.search(0, 0, food.col, food.row);
+  snake.followPath(graph.path);
 }
 
 public Food pickFoodLocation(){
@@ -47,21 +47,18 @@ void draw(){
   graph.drawGrid();
   graph.drawOpenSet();
   graph.drawClosedSet();
-  graph.drawPath();
+  //graph.drawPath();
   
   if(snake.eat(food)){
     food = pickFoodLocation();
-    //final int snakeCol = snake.col;
-    //final int snakeRow = snake.row;
-    graph.search(snake, food);
-    
-  }
+    graph.search(snake.col, snake.row, food.col, food.row);
+  }else{
+    snake.followPath(graph.path);
   
-  //snake.takePath(graph.path);
   snake.death();
   snake.boundaries();
   snake.update();
-
+  }
   snake.show();
   food.show();
   

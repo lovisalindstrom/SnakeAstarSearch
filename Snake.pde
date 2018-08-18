@@ -31,9 +31,9 @@ class Snake {
     
     x = x + xspeed * scl;
     y = y + yspeed * scl;
-    //col = x / scl;
-    //row = y / scl;
-    //System.out.println("Snake col: " + col + " row: " + row);
+    col = x / scl;
+    row = y / scl;
+    System.out.println("Snake col: " + col + " row: " + row);
       
     //x = constrain(x, 0, width-scl); 
     //y = constrain(y, 0, height-scl);
@@ -77,12 +77,12 @@ class Snake {
   }
   
   
- // void takePath(ArrayList<Spot> path){
- //  for(int i = 0; i < path.size(); i++){
- //    snake.xspeed = (int)path.get(i).x;
- //    snake.yspeed = (int)path.get(i).y;
- //  }
- //}
+ void followPath(ArrayList<Spot> path){
+   for(int i = 0; i < path.size(); i++){
+     col = (int)path.get(i).x;
+     row = (int)path.get(i).y;
+   }
+ }
  
   void show(){
     fill(255);
@@ -91,7 +91,7 @@ class Snake {
         rect(tail[i].x, tail[i].y, scl, scl);
       }
     }
-    rect(x, y,scl,scl);
+    rect(x, y, scl, scl);
   }
   
   void dir(int x, int y){
