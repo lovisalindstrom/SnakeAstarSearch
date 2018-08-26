@@ -52,13 +52,11 @@ void draw(){
   if(snake.eat(food)){
     food = pickFoodLocation();
     graph.search(snake.col, snake.row, food.col, food.row);
-  }else{
-    snake.followPath(graph.path);
-  
+  }
   snake.death();
   snake.boundaries();
   snake.update();
-  }
+
   snake.show();
   food.show();
   
