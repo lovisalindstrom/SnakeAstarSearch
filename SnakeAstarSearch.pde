@@ -1,5 +1,9 @@
-//From Coding Challenge #3: The Snake Game by Daniel Shiffman
+//Inspiration taken from from Coding Challenge #3: The Snake Game by Daniel Shiffman
 //https://www.youtube.com/watch?v=AaGK-fj-BAM
+
+//Grupp 11
+//Lovisa Lindström 
+//Ellinor Granlund
 
 Astar graph;
 Snake snake;
@@ -23,11 +27,7 @@ void setup(){
   snake = new Snake(0, 0, 1, 0);
   System.out.println("Snake col: " + snake.col +  " " + snake.row);
   food = pickFoodLocation();
-  
-  //final int snakeCol = snake.col;
-  //final int snakeRow = snake.row;
   graph.search(0, 0, food.col, food.row);
-  snake.followPath(graph.path);
 }
 
 public Food pickFoodLocation(){
@@ -47,7 +47,6 @@ void draw(){
   graph.drawGrid();
   graph.drawOpenSet();
   graph.drawClosedSet();
-  //graph.drawPath();
   
   if(snake.eat(food)){
     food = pickFoodLocation();

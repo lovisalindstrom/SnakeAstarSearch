@@ -1,3 +1,6 @@
+//Grupp 11
+//Lovisa Lindström 
+//Ellinor Granlund
 
 class Snake {
   int x;
@@ -35,8 +38,6 @@ class Snake {
     row = y / scl;
     System.out.println("Snake col: " + col + " row: " + row);
       
-    //x = constrain(x, 0, width-scl); 
-    //y = constrain(y, 0, height-scl);
   }
   
   
@@ -76,13 +77,6 @@ class Snake {
     }
   }
   
-  
- void followPath(ArrayList<Spot> path){
-   for(int i = 0; i < path.size(); i++){
-     col = (int)path.get(i).x;
-     row = (int)path.get(i).y;
-   }
- }
  
   void show(){
     fill(255);

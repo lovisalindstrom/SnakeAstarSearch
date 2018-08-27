@@ -1,3 +1,6 @@
+//Grupp 11
+//Lovisa Lindström 
+//Ellinor Granlund
 
 class Astar{
   ArrayList<Spot> openSet;
@@ -71,8 +74,6 @@ class Astar{
   public float heuristic(Spot a, Spot b){
     //euclidian distance
     float dist = dist(a.x, a.y, b.x, b.y);
-    
-    //float dist = abs(a.x-b.x) + abs(a.y-b.y);
     return dist;
   }
   
@@ -129,15 +130,6 @@ class Astar{
          System.out.println("Add to path " + closedSet.get(i));
        }
        
-       //Spot temp = current;
-       //path.add(temp);
-       //System.out.println("Add to path " + temp);
-       //while(temp.previous != null){
-       //  System.out.println("Add to path " + temp.previous);
-       //  path.add(temp.previous);
-       //  temp = temp.previous;
-       //}
-       
        System.out.println("DONE");
        break;
      }
@@ -170,26 +162,8 @@ class Astar{
          }
        }
      }
-   }//else{
-   //  //no solution
-   //  System.out.println("No solution");
-   //  noLoop();
-   //  return;
-   //}
-      
+   }
    
-   
-
-   //Spot temp = current;
-   //path.add(temp);
-   //while(temp.previous != null){
-   //  path.add(temp.previous);
-   //  temp = temp.previous;
-   //}
-
-   //drawPath(); 
-   
- 
  }
  
  

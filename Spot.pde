@@ -1,3 +1,7 @@
+//Grupp 11
+//Lovisa Lindström 
+//Ellinor Granlund
+
 class Spot {
   
   float f;
@@ -19,10 +23,6 @@ class Spot {
     this.g = 0;
     this.h = 0;
     this.previous = null;
-    //this.wall = false;
-    //if(random(1) < 0.3){
-    //  this.wall = true;
-    //}
   }
   
   void addNeighbors(Spot[][] grid){

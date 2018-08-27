@@ -1,3 +1,7 @@
+//Grupp 11
+//Lovisa Lindström 
+//Ellinor Granlund
+
 class Food{
   int col;
   int row;
